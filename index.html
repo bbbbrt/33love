@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>好好好</title>
+  <style>
+    /* 页面背景 */
+    body {
+      background: linear-gradient(45deg, #f8c7f9, #d7b9e4);
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #4a4a4a;
+    }
+
+    /* 内容区域 */
+    .container {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 350px;
+    }
+
+    /* 标题文本 */
+    .container div {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* 左侧按钮（蓝色） */
+    #leftButton {
+      font-size: 16px;
+      padding: 12px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #4A90E2, #007BFF);
+      /* 蓝色渐变 */
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    #leftButton:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 右侧按钮 */
+    #rightButton {
+      font-size: 16px;
+      padding: 12px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #f6a9c4, #ff6a88);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    #rightButton:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 图片样式 */
+    #image {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      margin-top: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="text">可以成为我的🐕吗？</div>
+    <button id="leftButton">不可以</button>
+    <button id="rightButton">可以</button>
+
+    <!-- 显示图片 -->
+    <img id="image" src="image1.png" alt="图片" />
+  </div>
+
+  <script>
+    // 获取按钮元素和图片元素
+    const leftButton = document.getElementById('leftButton');
+    const rightButton = document.getElementById('rightButton');
+    const image = document.getElementById('image');
+    const text = document.getElementById('text');
+    let randomIndex = 0;  // 用于按钮文本的变化
+    let imageIndex = 1;  // 用于图片切换
+
+    // 右侧按钮点击时的处理函数
+    rightButton.addEventListener('click', function () {
+      // 左边按钮字体变大
+      const currentSize = parseInt(window.getComputedStyle(leftButton).fontSize);
+      leftButton.style.fontSize = (currentSize + 5) + 'px';
+
+      // 右边按钮内容改变
+      const responses = ["好哒❤", "我愿意😗", "我确定！！！", "就要选这个！", "就要就要！", "呜呜😭😭😭😭😭"];
+      rightButton.textContent = responses[randomIndex];
+
+      imageIndex = imageIndex + 1;
+      if (imageIndex >= 5) {
+        imageIndex = 5;
+      }
+      image.src = `image${imageIndex}.png`; // 更新图片的路径
+
+      // 更新randomIndex
+      randomIndex++;
+      if (randomIndex >= responses.length) {
+        randomIndex = responses.length - 1;
+      }
+    });
+
+    // 左侧按钮点击时的处理函数
+    leftButton.addEventListener('click', function () {
+      // 清除现有内容
+      text.textContent = '给老子滚😠';  // 修改文本内容
+      leftButton.style.display = 'none';  // 隐藏左侧按钮
+      rightButton.style.display = 'none';  // 隐藏右侧按钮
+      image.src = 'image4.png';  // 显示 image5.png
+    });
+  </script>
+</body>
+
+</html>
